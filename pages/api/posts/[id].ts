@@ -1,9 +1,20 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getPostByID, updatePost, daletePostByID, runMiddleware, cors } from '../../../utils/commonFunction';
+import { getPostByID, updatePost, daletePostByID, runMiddleware } from '../../../utils/commonFunction';
 import {postType} from '../../../utils/types';
+
+import Cors from 'cors';
+
+const cors = Cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],
+  });
+
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     await runMiddleware(req, res, cors);
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
         const {id} = req.query;
 
         if(typeof id == 'string'){
