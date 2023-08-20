@@ -1,8 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connection from '../../../utils/db';
-import { getPostByID, runMiddleware, cors } from '../../../utils/commonFunction';
+import { getPostByID, runMiddleware } from '../../../utils/commonFunction';
+import Cors from 'cors';
 
-
+const cors = Cors({
+    origin: '*',
+    methods: ['GET', 'POST'],
+  });
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

@@ -87,7 +87,7 @@ const getPostByID = async (id: number): Promise<any> => {
 
   // Initializing the cors middleware
 const cors = Cors({
-  origin: '*', // You can change this to a specific origin or a list of allowed origins
+  origin: '*',
   methods: ['GET', 'POST'],
 });
 
