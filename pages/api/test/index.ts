@@ -6,7 +6,7 @@ import { IncomingMessage, ServerResponse } from 'http';
 
 
 const cors = microCors({
-    allowMethods: ['GET', 'POST'],
+    allowMethods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],
     allowHeaders: ['X-Requested-With', 'Content-Type'],
     origin: 'http://localhost:3001',
   });

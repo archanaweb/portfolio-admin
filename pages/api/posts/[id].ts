@@ -1,6 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getPostByID, updatePost, daletePostByID, runMiddleware } from '../../../utils/commonFunction';
 import {postType} from '../../../utils/types';
+import allowCors from '@/utils/cors';
+
 
 import Cors from 'cors';
 
@@ -10,7 +12,7 @@ const cors = Cors({
   });
 
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
     await runMiddleware(req, res, cors);
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
@@ -60,3 +62,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 
 } 
+
+export default allowCors(handler);
