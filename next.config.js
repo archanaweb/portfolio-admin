@@ -6,7 +6,7 @@ module.exports = {
         return [
           {
             source: '/api/:path*',
-            destination: '*',
+            destination: '/',
           },
         ]
       },
