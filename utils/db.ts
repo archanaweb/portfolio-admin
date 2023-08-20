@@ -1,5 +1,5 @@
 import mysql, { Connection } from 'mysql';
-import { DBConnectionOptions } from './utils/interfaces';
+import { DBConnectionOptions } from './interfaces';
 
 const connectionOptions: DBConnectionOptions = {
   host: `${process.env.DB_HOST}`,

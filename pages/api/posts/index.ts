@@ -1,10 +1,15 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import connection from '../../../app/db';
-import { getPostByID } from '../../commonFunction';
+import connection from '../../../utils/db';
+import { getPostByID, runMiddleware, cors } from '../../../utils/commonFunction';
+
+
+
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+     // Using the cors middleware
+     await runMiddleware(req, res, cors);
+    
     if (req.method === 'GET') {
-        res.setHeader('Access-Control-Allow-Origin', '*');
         const getPostsQuery = `SELECT * FROM posts`;
         try{
             connection.query("SET NAMES 'utf8mb4'");

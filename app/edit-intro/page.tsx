@@ -1,7 +1,7 @@
 'use client';
 import {FormEvent, useEffect, useState} from 'react';
-import {intro} from '@/app/utils/interfaces';
-import {intialIntro} from '@/app/utils/initialvalues';
+import {intro} from '@/utils/interfaces';
+import {intialIntro} from '@/utils/initialvalues';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -49,8 +49,6 @@ export default function EditIntro() {
 
     }, [introdata])
   
-
-
     const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {

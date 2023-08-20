@@ -1,5 +1,9 @@
-import connection from '../app/db';
+import { NextApiRequest, NextApiResponse } from 'next';
+import connection from './db';
 import {postType} from './types';
+import Cors from 'cors';
+
+type CorsMiddleware = (req: NextApiRequest, res: NextApiResponse, callback: (result: unknown) => void) => void;
 
 
 const getPostByID = async (id: number): Promise<any> => {
@@ -69,6 +73,22 @@ const getPostByID = async (id: number): Promise<any> => {
       });
     });
   };
-  
 
-  export {getPostByID, updatePost,daletePostByID};
+  const runMiddleware = (req: NextApiRequest, res: NextApiResponse, fn: CorsMiddleware) => {
+    return new Promise<void>((resolve, reject) => {
+      fn(req, res, result => {
+        if (result instanceof Error) {
+          return reject(result);
+        }
+        return resolve();
+      });
+    });
+  };
+
+  // Initializing the cors middleware
+const cors = Cors({
+  origin: '*', // You can change this to a specific origin or a list of allowed origins
+  methods: ['GET', 'POST'],
+});
+
+  export {getPostByID, updatePost,daletePostByID, runMiddleware, cors};

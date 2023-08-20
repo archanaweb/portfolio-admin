@@ -1,8 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getPostByID, updatePost, daletePostByID } from '../../commonFunction';
-import {postType} from '../../types';
+import { getPostByID, updatePost, daletePostByID, runMiddleware, cors } from '../../../utils/commonFunction';
+import {postType} from '../../../utils/types';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    await runMiddleware(req, res, cors);
         const {id} = req.query;
 
         if(typeof id == 'string'){
