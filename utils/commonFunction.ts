@@ -88,7 +88,7 @@ const getPostByID = async (id: number): Promise<any> => {
   // Initializing the cors middleware
 const cors = Cors({
   origin: '*',
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],
 });
 
   export {getPostByID, updatePost,daletePostByID, runMiddleware, cors};
